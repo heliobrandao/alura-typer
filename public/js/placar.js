@@ -75,7 +75,18 @@ function sincronizaPlacar(){
     };
     $.post("http://localhost:3000/placar",dados, function(){
         console.log("salvou");
-    });
+        $(".tooltip").tooltipster("open").tooltipster("content","Sucesso ao Sincronizar");
+    }).fail(function(){
+        $(".tooltip").tooltipster("open").tooltipster("content","Falha ao Sincronizar");
+    })
+    
+    .always(()=> {
+        setTimeout(function(){
+        
+            $(".tooltip").tooltipster("close")
+        },1200);
+    
+    })
 }
 
 function atualizaPlacar(){
